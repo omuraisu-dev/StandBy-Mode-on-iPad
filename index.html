@@ -1,43 +1,39 @@
+<head>
+    <!-- ... other meta tags ... -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Figtree:wght@400;700&family=Oswald:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
 <body>
-    <!-- Gear Icon to open settings -->
-    <button id="settings-toggle">⚙️</button>
-
-    <!-- Settings Menu (Hidden by default) -->
+    <!-- The Settings Menu (Now slides from the LEFT) -->
     <div id="settings-menu" class="hidden">
-        <h3>Settings</h3>
+        <h3>Customise</h3>
         
-        <label>Clock Color</label>
-        <input type="color" id="color-picker" value="#ffffff">
-
-        <label>Font Style</label>
+        <label>Clock Font</label>
         <select id="font-selector">
-            <option value="-apple-system">Default (San Francisco)</option>
-            <option value="'Courier New', Courier, monospace">Mono</option>
-            <option value="'Georgia', serif">Serif</option>
-            <option value="'Times New Roman', Times, serif">Classic</option>
-            <option value="system-ui">Modern</option>
+            <option value="'Figtree', sans-serif">Figtree</option>
+            <option value="'Space Grotesk', sans-serif">Space Grotesk</option>
+            <option value="'Bebas Neue', cursive">Bebas Neue</option>
+            <option value="'Oswald', sans-serif">Oswald</option>
         </select>
 
-        <label>
-            <input type="checkbox" id="show-seconds"> Show Seconds
+        <label>Clock Colour</label>
+        <div class="color-grid">
+            <button class="color-btn" data-color="#FFFFFF" style="background:#FFFFFF;"></button>
+            <button class="color-btn" data-color="#FFFDD0" style="background:#FFFDD0;"></button>
+            <button class="color-btn" data-color="#FF3B30" style="background:#FF3B30;"></button>
+            <button class="color-btn" data-color="#FF9500" style="background:#FF9500;"></button>
+            <button class="color-btn" data-color="#34C759" style="background:#34C759;"></button>
+        </div>
+
+        <label class="switch-label">
+            <span>Show Seconds</span>
+            <input type="checkbox" id="show-seconds">
         </label>
 
-        <button id="night-toggle">Toggle Night Mode</button>
-        <button id="close-settings">Close</button>
+        <button id="night-toggle">Night Mode Toggle</button>
+        <p class="hint">Swipe left to close menu</p>
     </div>
 
-    <div id="overlay">
-        <button id="start-btn">Start StandBy</button>
-    </div>
-
-    <div class="container" id="main-container">
-        <div class="widget clock-widget">
-            <h1 id="time">00:00</h1>
-        </div>
-        <div class="widget info-widget">
-            <p id="date">Monday, January 1</p>
-        </div>
-    </div>
-
-    <script src="app.js"></script>
-</body>
+    <!-- ... rest of your HTML (overlay, main-container) ... -->
