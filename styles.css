@@ -1,54 +1,81 @@
-/* Settings Menu (Hidden on the LEFT) */
-#settings-menu {
+body, html {
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    background-color: black; color: white;
+    font-family: 'Figtree', sans-serif;
+    overflow: hidden;
+}
+
+.page {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    transition: opacity 0.3s ease;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Open Settings Button (Top Right) */
+#open-settings {
     position: fixed;
-    top: 0;
-    left: 0; /* Changed to left */
-    width: 300px;
-    height: 100%;
-    background: rgba(20, 20, 20, 0.95);
-    backdrop-filter: blur(20px);
-    z-index: 1000;
-    padding: 60px 25px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    border-right: 1px solid rgba(255,255,255,0.1);
-    transform: translateX(-100%); /* Hides off-screen left */
+    top: 30px; right: 30px;
+    background: rgba(255,255,255,0.1);
+    border: none; font-size: 24px;
+    padding: 15px; border-radius: 50%;
+    z-index: 10; cursor: pointer;
 }
 
-#settings-menu.visible {
-    transform: translateX(0);
+/* Settings Page Layout */
+#settings-page {
+    background: #1c1c1e; /* Apple System Gray */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Color Selection Grid */
-.color-grid {
-    display: flex;
-    gap: 12px;
+.settings-content {
+    width: 90%; max-width: 500px;
+    display: flex; flex-direction: column; gap: 30px;
 }
+
+section { display: flex; flex-direction: column; gap: 10px; }
+
+label { color: #8e8e93; text-transform: uppercase; font-size: 13px; letter-spacing: 1px; }
+
+select, #close-settings, #night-toggle {
+    background: #2c2c2e; color: white;
+    border: none; padding: 15px;
+    border-radius: 12px; font-size: 17px;
+}
+
+#close-settings {
+    background: #007aff; /* Apple Blue */
+    font-weight: bold; margin-top: 20px;
+}
+
+/* Color Grid */
+.color-grid { display: flex; gap: 15px; }
 .color-btn {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    border: 2px solid transparent;
-    cursor: pointer;
+    width: 45px; height: 45px;
+    border-radius: 50%; border: 3px solid transparent;
 }
-.color-btn.active {
-    border-color: white;
-}
+.color-btn.active { border-color: white; }
 
-/* Font Labels */
-#settings-menu label {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #666;
+/* Display Container */
+.container {
+    display: grid; width: 100%; height: 100%;
 }
+@media (orientation: landscape) { .container { grid-template-columns: 1fr 1fr; align-items: center; } }
+@media (orientation: portrait) { .container { grid-template-rows: 1fr 1fr; justify-items: center; align-items: center; } }
 
-.hint {
-    font-size: 11px;
-    color: #444;
-    text-align: center;
-    margin-top: auto;
+#time { font-size: 22vw; font-weight: 700; margin: 0; }
+#date { font-size: 4vw; color: gray; }
+
+.night-mode { filter: sepia(100%) saturate(300%) hue-rotate(-50deg) brightness(0.6); }
+
+#overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: black; z-index: 2000; display: flex; justify-content: center; align-items: center;
 }
