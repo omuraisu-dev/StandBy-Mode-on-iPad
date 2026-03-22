@@ -1,0 +1,32 @@
+// 1. Keep Screen Awake
+let wakeLock = null;
+const requestWakeLock = async () => {
+  try {
+    wakeLock = await navigator.wakeLock.request('screen');
+    console.log('Wake Lock is active');
+  } catch (err) {
+    console.error(`${err.name}, ${err.message}`);
+  }
+};
+
+// Re-request wake lock when app is brought back to foreground
+document.addEventListener('visibilitychange', () => {
+  if (wakeLock !== null && document.visibilityState === 'visible') {
+    requestWakeLock();
+  }
+});
+
+// 2. Update Clock
+function updateClock() {
+  const now = new Date();
+  document.getElementById('time').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  document.getElementById('date').textContent = now.toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric' });
+}
+
+setInterval(updateClock, 1000);
+window.onload = () => {
+  updateClock();
+  // Wake lock requires a user gesture in some browsers, 
+  // so call it on the first tap/click.
+  document.addEventListener('click', requestWakeLock, { once: true });
+};
