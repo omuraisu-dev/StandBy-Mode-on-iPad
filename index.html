@@ -1,32 +1,38 @@
-// 1. Keep Screen Awake
-let wakeLock = null;
-const requestWakeLock = async () => {
-  try {
-    wakeLock = await navigator.wakeLock.request('screen');
-    console.log('Wake Lock is active');
-  } catch (err) {
-    console.error(`${err.name}, ${err.message}`);
-  }
-};
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>iPad StandBy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon.png">
+</head>
+<body>
+    <!-- Initial Overlay to trigger WakeLock -->
+    <div id="overlay">
+        <button id="start-btn">Start StandBy</button>
+    </div>
 
-// Re-request wake lock when app is brought back to foreground
-document.addEventListener('visibilitychange', () => {
-  if (wakeLock !== null && document.visibilityState === 'visible') {
-    requestWakeLock();
-  }
-});
+    <div class="container" id="main-container">
+        <!-- Widget 1: Large Clock -->
+        <div class="widget clock-widget">
+            <h1 id="time">00:00</h1>
+        </div>
 
-// 2. Update Clock
-function updateClock() {
-  const now = new Date();
-  document.getElementById('time').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  document.getElementById('date').textContent = now.toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric' });
-}
+        <!-- Widget 2: Date & Info -->
+        <div class="widget info-widget">
+            <p id="date">Monday, January 1</p>
+            <div id="calendar-preview">
+                <!-- You can add more info here later -->
+                <p>Welcome</p>
+            </div>
+            <button id="night-toggle">Night Mode</button>
+        </div>
+    </div>
 
-setInterval(updateClock, 1000);
-window.onload = () => {
-  updateClock();
-  // Wake lock requires a user gesture in some browsers, 
-  // so call it on the first tap/click.
-  document.addEventListener('click', requestWakeLock, { once: true });
-};
+    <script src="app.js"></script>
+</body>
+</html>
