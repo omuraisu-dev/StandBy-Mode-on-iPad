@@ -1,56 +1,54 @@
-/* Settings Gear Button */
-#settings-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    font-size: 24px;
-    padding: 10px;
-    border-radius: 50%;
-    z-index: 10;
-    cursor: pointer;
-}
-
-/* Settings Menu Panel */
+/* Settings Menu (Hidden on the LEFT) */
 #settings-menu {
     position: fixed;
     top: 0;
-    right: 0;
+    left: 0; /* Changed to left */
     width: 300px;
     height: 100%;
-    background: rgba(30, 30, 30, 0.9);
-    backdrop-filter: blur(15px); /* iPad-style blur */
-    z-index: 20;
-    padding: 40px 20px;
+    background: rgba(20, 20, 20, 0.95);
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    padding: 60px 25px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    transition: transform 0.3s ease-in-out;
-    border-left: 1px solid rgba(255,255,255,0.1);
+    gap: 25px;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border-right: 1px solid rgba(255,255,255,0.1);
+    transform: translateX(-100%); /* Hides off-screen left */
 }
 
-#settings-menu.hidden {
-    transform: translateX(100%); /* Hides the menu to the right */
+#settings-menu.visible {
+    transform: translateX(0);
 }
 
+/* Color Selection Grid */
+.color-grid {
+    display: flex;
+    gap: 12px;
+}
+.color-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+.color-btn.active {
+    border-color: white;
+}
+
+/* Font Labels */
 #settings-menu label {
-    font-size: 14px;
-    color: #aaa;
-    margin-bottom: -10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #666;
 }
 
-#settings-menu input, #settings-menu select, #settings-menu button {
-    padding: 12px;
-    border-radius: 8px;
-    border: none;
-    background: #333;
-    color: white;
-    font-size: 16px;
-}
-
-#close-settings {
-    background: #ff3b30 !important; /* Red close button */
+.hint {
+    font-size: 11px;
+    color: #444;
+    text-align: center;
     margin-top: auto;
 }
