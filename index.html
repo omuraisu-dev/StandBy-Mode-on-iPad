@@ -1,38 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>iPad StandBy</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="icon.png">
-</head>
 <body>
-    <!-- Initial Overlay to trigger WakeLock -->
+    <!-- Gear Icon to open settings -->
+    <button id="settings-toggle">⚙️</button>
+
+    <!-- Settings Menu (Hidden by default) -->
+    <div id="settings-menu" class="hidden">
+        <h3>Settings</h3>
+        
+        <label>Clock Color</label>
+        <input type="color" id="color-picker" value="#ffffff">
+
+        <label>Font Style</label>
+        <select id="font-selector">
+            <option value="-apple-system">Default (San Francisco)</option>
+            <option value="'Courier New', Courier, monospace">Mono</option>
+            <option value="'Georgia', serif">Serif</option>
+            <option value="'Times New Roman', Times, serif">Classic</option>
+            <option value="system-ui">Modern</option>
+        </select>
+
+        <label>
+            <input type="checkbox" id="show-seconds"> Show Seconds
+        </label>
+
+        <button id="night-toggle">Toggle Night Mode</button>
+        <button id="close-settings">Close</button>
+    </div>
+
     <div id="overlay">
         <button id="start-btn">Start StandBy</button>
     </div>
 
     <div class="container" id="main-container">
-        <!-- Widget 1: Large Clock -->
         <div class="widget clock-widget">
             <h1 id="time">00:00</h1>
         </div>
-
-        <!-- Widget 2: Date & Info -->
         <div class="widget info-widget">
             <p id="date">Monday, January 1</p>
-            <div id="calendar-preview">
-                <!-- You can add more info here later -->
-                <p>Welcome</p>
-            </div>
-            <button id="night-toggle">Night Mode</button>
         </div>
     </div>
 
     <script src="app.js"></script>
 </body>
-</html>
