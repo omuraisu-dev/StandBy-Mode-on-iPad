@@ -1,81 +1,50 @@
-body, html {
-    margin: 0; padding: 0;
-    width: 100%; height: 100%;
-    background-color: black; color: white;
-    font-family: 'Figtree', sans-serif;
-    overflow: hidden;
+/* Layout for Split Screen */
+.split-container {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
 }
 
-.page {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    transition: opacity 0.3s ease;
+@media (orientation: landscape) {
+    .split-container { grid-template-columns: 1fr 1fr; }
+    .widget-slot { border-right: 1px solid rgba(255,255,255,0.05); }
+}
+@media (orientation: portrait) {
+    .split-container { grid-template-rows: 1fr 1fr; }
 }
 
-.hidden {
-    display: none !important;
-}
-
-/* Open Settings Button (Top Right) */
-#open-settings {
-    position: fixed;
-    top: 30px; right: 30px;
-    background: rgba(255,255,255,0.1);
-    border: none; font-size: 24px;
-    padding: 15px; border-radius: 50%;
-    z-index: 10; cursor: pointer;
-}
-
-/* Settings Page Layout */
-#settings-page {
-    background: #1c1c1e; /* Apple System Gray */
+.widget-slot {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
-.settings-content {
-    width: 90%; max-width: 500px;
-    display: flex; flex-direction: column; gap: 30px;
+/* Calendar Widget Styling */
+.calendar-widget {
+    width: 80%;
+    max-width: 350px;
 }
-
-section { display: flex; flex-direction: column; gap: 10px; }
-
-label { color: #8e8e93; text-transform: uppercase; font-size: 13px; letter-spacing: 1px; }
-
-select, #close-settings, #night-toggle {
-    background: #2c2c2e; color: white;
-    border: none; padding: 15px;
-    border-radius: 12px; font-size: 17px;
+.cal-header {
+    text-align: left;
+    color: #ff9f0a; /* Apple Orange */
+    font-weight: bold;
+    margin-bottom: 10px;
 }
-
-#close-settings {
-    background: #007aff; /* Apple Blue */
-    font-weight: bold; margin-top: 20px;
+.cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    text-align: center;
 }
+.day-name { font-size: 10px; color: #666; font-weight: bold; }
+.day-num { font-size: 18px; padding: 5px; }
+.today { background: #ff3b30; border-radius: 50%; color: white; font-weight: bold; }
 
-/* Color Grid */
-.color-grid { display: flex; gap: 15px; }
-.color-btn {
-    width: 45px; height: 45px;
-    border-radius: 50%; border: 3px solid transparent;
-}
-.color-btn.active { border-color: white; }
+/* Weather Widget Styling */
+.weather-widget { text-align: center; }
+.temp { font-size: 80px; font-weight: bold; margin: 0; }
+.condition { font-size: 20px; color: #8e8e93; text-transform: capitalize; }
 
-/* Display Container */
-.container {
-    display: grid; width: 100%; height: 100%;
-}
-@media (orientation: landscape) { .container { grid-template-columns: 1fr 1fr; align-items: center; } }
-@media (orientation: portrait) { .container { grid-template-rows: 1fr 1fr; justify-items: center; align-items: center; } }
-
-#time { font-size: 22vw; font-weight: 700; margin: 0; }
-#date { font-size: 4vw; color: gray; }
-
-.night-mode { filter: sepia(100%) saturate(300%) hue-rotate(-50deg) brightness(0.6); }
-
-#overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: black; z-index: 2000; display: flex; justify-content: center; align-items: center;
-}
+/* Existing Clock Overrides */
+#time { font-size: 12vw; } /* Smaller for split screen */
