@@ -1,76 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>iPad StandBy</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Figtree:wght@400;700&family=Oswald:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+<!-- MAIN DISPLAY PAGE -->
+<div id="display-page" class="page">
+    <button id="open-settings">⚙️</button>
+    <div class="split-container" id="main-container">
+        <!-- Left Side Widget Container -->
+        <div id="left-widget" class="widget-slot"></div>
+        <!-- Right Side Widget Container -->
+        <div id="right-widget" class="widget-slot"></div>
+    </div>
+</div>
 
-    <!-- 1. MAIN DISPLAY PAGE -->
-    <div id="display-page" class="page">
-        <button id="open-settings">⚙️</button>
+<!-- SETTINGS PAGE -->
+<div id="settings-page" class="page hidden">
+    <div class="settings-content">
+        <h1>Widget Layout</h1>
         
-        <div class="container" id="main-container">
-            <div class="widget clock-widget">
-                <h1 id="time">00:00</h1>
-            </div>
-            <div class="widget info-widget">
-                <p id="date">Monday, January 1</p>
-            </div>
+        <div class="settings-row">
+            <label>Left Widget</label>
+            <select id="left-selector">
+                <option value="clock">Clock</option>
+                <option value="weather">Weather</option>
+                <option value="calendar">Calendar</option>
+            </select>
         </div>
-    </div>
 
-    <!-- 2. SETTINGS PAGE (Hidden by default) -->
-    <div id="settings-page" class="page hidden">
-        <div class="settings-content">
-            <h1>Settings</h1>
-
-            <section>
-                <label>Clock Font</label>
-                <select id="font-selector">
-                    <option value="'Figtree', sans-serif">Figtree</option>
-                    <option value="'Space Grotesk', sans-serif">Space Grotesk</option>
-                    <option value="'Bebas Neue', cursive">Bebas Neue</option>
-                    <option value="'Oswald', sans-serif">Oswald</option>
-                </select>
-            </section>
-
-            <section>
-                <label>Clock Colour</label>
-                <div class="color-grid">
-                    <button class="color-btn" data-color="#FFFFFF" style="background:#FFFFFF;"></button>
-                    <button class="color-btn" data-color="#FFFDD0" style="background:#FFFDD0;"></button>
-                    <button class="color-btn" data-color="#FF3B30" style="background:#FF3B30;"></button>
-                    <button class="color-btn" data-color="#FF9500" style="background:#FF9500;"></button>
-                    <button class="color-btn" data-color="#34C759" style="background:#34C759;"></button>
-                </div>
-            </section>
-
-            <section>
-                <div class="toggle-row">
-                    <span>Show Seconds</span>
-                    <input type="checkbox" id="show-seconds">
-                </div>
-            </section>
-
-            <section>
-                <button id="night-toggle">Night Mode Filter</button>
-            </section>
-
-            <button id="close-settings">Done</button>
+        <div class="settings-row">
+            <label>Right Widget</label>
+            <select id="right-selector">
+                <option value="calendar">Calendar</option>
+                <option value="clock">Clock</option>
+                <option value="weather">Weather</option>
+            </select>
         </div>
-    </div>
 
-    <!-- Initial Overlay -->
-    <div id="overlay">
-        <button id="start-btn">Start StandBy</button>
+        <hr>
+        <h1>Appearance</h1>
+        <!-- ... keep your existing Font, Color, Seconds, and Night Mode settings here ... -->
+        <button id="close-settings">Done</button>
     </div>
-
-    <script src="app.js"></script>
-</body>
-</html>
+</div>
